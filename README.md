@@ -1,6 +1,6 @@
 # Mutation utilities for protein design
 
-A very raw version, don't have much time to work on this.
+A very raw version, work in progress. To install, simply run `pip install .`.
 
 ## `Mutation` class
 
