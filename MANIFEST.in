@@ -1,2 +1,1 @@
-include README.md
-include data/*
+include data/SKEMPI2/skempi_v2.csv
