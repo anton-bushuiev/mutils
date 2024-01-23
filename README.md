@@ -1,6 +1,6 @@
 # Mutation utilities for protein design
 
-A very raw version, work in progress. To install, simply run `pip install .`.
+A very raw version, work in progress. To install, run `pip install git+https://github.com/anton-bushuiev/mutils.git`.
 
 ## `Mutation` class
 

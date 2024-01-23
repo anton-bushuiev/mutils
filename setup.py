@@ -7,5 +7,6 @@ setup(
     name='mutils',
     version='0.1',
     packages=find_packages(),
+    package_data={'mutils': ['data/*']},
     install_requires=required,
 )
