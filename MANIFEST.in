@@ -1,1 +1,2 @@
-include mutils/data/*
+include README.md
+include data/*
