@@ -7,7 +7,7 @@ import pathlib
 # Root
 MUTILS_ROOT_DIR = pathlib.Path(__file__).parent.absolute()
 # Data
-MUTILS_DATA_DIR = MUTILS_ROOT_DIR / 'data'
+MUTILS_DATA_DIR = MUTILS_ROOT_DIR / 'datasets'
 MUTILS_SKEMPI2_DIR = MUTILS_DATA_DIR / 'SKEMPI2'
 MUTILS_7FAE_DIR = MUTILS_DATA_DIR / '7FAE'
 
