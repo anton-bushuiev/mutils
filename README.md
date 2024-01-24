@@ -75,7 +75,7 @@ parse_fasta(fasta)
 
 ## Reading preprocessed datasets
 
-Please cite the corresponding papers if you find datasets useful (see `data/README.md`).
+Please cite the corresponding papers if you find datasets useful (see `mutils/datasets/README.md`).
 
 ```python
 from mutils.data import load_SKEMPI2
