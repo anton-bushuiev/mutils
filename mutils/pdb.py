@@ -1,7 +1,8 @@
 from pathlib import Path
 import os
-from collections import defaultdict
 import urllib
+import warnings
+from collections import defaultdict
 
 import numpy as np
 from sklearn.metrics import mean_squared_error
@@ -9,6 +10,7 @@ import Bio.PDB
 from Bio import SeqIO
 from Bio.PDB import PDBIO, PDBParser, parse_pdb_header
 from Bio.PDB.Polypeptide import protein_letters_3to1
+from Bio.PDB.PDBExceptions import PDBConstructionWarning
 
 from mutils.misc import verbose
 
@@ -65,7 +67,10 @@ def get_sequences(pdb_path, model_id=0):
     for chain in model:
         seq = []
         for residue in chain:
-            seq.append(protein_letters_3to1[residue.resname])
+            if residue.resname in protein_letters_3to1:
+                seq.append(protein_letters_3to1[residue.resname])
+            else:
+                seq.append('-')
         seqs[chain.id] = ''.join(seq)
     return seqs
 

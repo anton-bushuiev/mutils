@@ -30,7 +30,7 @@ AMINO_ACID_CODES_1 = [
 MISSING_AMINO_ACID_CODE = '-'
 
 
-def parse_fasta(fasta: str) -> dict:
+def parse_fasta(fasta: str, chain_id_only: bool = False) -> dict:
     """
     :param fasta: string in FASTA format
     :return: mapping of chain ids to amino acid sequences
@@ -39,7 +39,8 @@ def parse_fasta(fasta: str) -> dict:
     sequences = {}
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
-        name = name.split(':')[-1]
+        if chain_id_only:
+            name = name.split(':')[-1]
         sequences[name] = sequence
 
     return sequences
