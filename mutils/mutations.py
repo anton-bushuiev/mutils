@@ -27,6 +27,7 @@ class PointMutation:
 
     @classmethod
     def from_str(cls, pmut: str, check_amino_acid_codes: bool = True) -> 'PointMutation':
+        pmut = pmut.replace(' ', '').strip()
         if not len(pmut):
             return None, None, None, None
         
@@ -65,8 +66,23 @@ class PointMutation:
         return resname == self.wt
 
 
+    def wt_to_graphein(self) -> str:
+        """
+        Examples: 'YC17T' -> 'TYR:C:17', 'AC17AG' -> 'ALA:C:17:A'
+        :return: Wild type in graphein format
+        """
+        parts = [protein_letters_1to3[self.wt], self.chain, str(self.pos)]
+        if self.ins is not None:
+            parts.append(self.ins)
+        return ':'.join(parts)
+
+
     def __str__(self) -> str:
-        return f'{self.wt}{self.chain}{self.pos}{self.ins}{self.m}'
+        s = ''
+        for x in [self.wt, self.chain, self.pos, self.ins, self.m]:
+            if x is not None:
+                s += str(x)
+        return s
 
 
 @dataclass
@@ -85,6 +101,9 @@ class Mutation:
     
     def wt_in_pdb(self, pdb_path: Union[Path, str], model_id: int = 0) -> bool:
         return all([m.wt_in_pdb(pdb_path, model_id) for m in self.muts])
+
+    def wt_to_graphein(self) -> list:
+        return [m.wt_to_graphein() for m in self.muts]
 
 
 # class Mutation:
