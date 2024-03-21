@@ -10,15 +10,15 @@ from mutils.mutations import Mutation
 # Parse a double-point mutation
 mutation = Mutation('TC13A,GC13aA')
 mutation
-> Mutation(TC13A,GC13aA)
+> Mutation(muts=[PointMutation(wt='T', chain='C', pos=13, ins=None, m='A'), PointMutation(wt='G', chain='C', pos=13, ins='a', m='A')])
 
 # Revert
 mutation.revert()
-> Mutation(AC13T,AC13aG)
+> Mutation(muts=[PointMutation(wt='A', chain='C', pos=13, ins=None, m='T'), PointMutation(wt='A', chain='C', pos=13, ins='a', m='G')])
 
-# Check for the presence of insertions
-mutation.insertion()
-> [False, True]
+# Check if the wild type is present in a PDB file
+mutation.wt_in_pdb(my_pdb_file_path)
+> True
 
 # Convert wild types to Graphein format
 mutation.wt_to_graphein()
