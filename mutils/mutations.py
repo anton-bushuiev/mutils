@@ -2,6 +2,7 @@ import itertools
 import copy
 import warnings
 import math
+import re
 from typing import Union
 from dataclasses import dataclass
 from pathlib import Path
@@ -25,11 +26,30 @@ class PointMutation:
     ins: str = None
     m: str = None
 
+    
+    """
+    Matches for a concatenated string of the following format: 
+    <one-letter code for wild-type amino acid>
+    <one or more letters for the chain>
+    <one or more digits for the residues number>
+    <one optional letter for insertion>
+    <one-letter code for mutant amino acid>
+    """
+    REGEX = re.compile(f"^{AMINO_ACID_CODES_1}[a-zA-Z]+\\d+[a-zA-Z]?{AMINO_ACID_CODES_1}$")
+
     @classmethod
-    def from_str(cls, pmut: str, check_amino_acid_codes: bool = True) -> 'PointMutation':
+    def from_str(
+        cls, 
+        pmut: str, 
+        check_amino_acid_codes: bool = True,
+        regex_check: bool = True
+    ) -> 'PointMutation':
         pmut = pmut.replace(' ', '').strip()
         if not len(pmut):
             return None, None, None, None
+        
+        if regex_check:
+            assert cls.REGEX.fullmatch(pmut), f'Wrong mutation format: {pmut}.'
         
         first_digit = [x.isdigit() for x in pmut].index(True)
         contains_insertion = pmut[-2].isalpha()
@@ -87,7 +107,7 @@ class PointMutation:
 
 @dataclass
 class Mutation:
-    muts: list = None
+    muts: tuple = tuple()
 
     @classmethod
     def from_str(cls, mut: str, check_amino_acid_codes: bool = True) -> 'Mutation':
