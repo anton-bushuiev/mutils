@@ -16,6 +16,10 @@ mutation
 mutation.revert()
 > Mutation(muts=[PointMutation(wt='A', chain='C', pos=13, ins=None, m='T'), PointMutation(wt='A', chain='C', pos=13, ins='a', m='G')])
 
+# Recert and convert back to string
+str(mut.revert())
+> 'AC13T,AC13aG'
+
 # Check if the wild type is present in a PDB file
 mutation.wt_in_pdb(my_pdb_file_path)
 > True
