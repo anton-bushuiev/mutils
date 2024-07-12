@@ -16,7 +16,7 @@ mutation
 mutation.revert()
 > Mutation(muts=[PointMutation(wt='A', chain='C', pos=13, ins=None, m='T'), PointMutation(wt='A', chain='C', pos=13, ins='a', m='G')])
 
-# Recert and convert back to string
+# Revert and convert back to string
 str(mut.revert())
 > 'AC13T,AC13aG'
 
