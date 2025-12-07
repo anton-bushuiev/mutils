@@ -144,7 +144,7 @@ typeguard==4.0.0
 tzdata==2023.3
 uri-template==1.2.0
 url-normalize==1.4.3
-urllib3==2.0.2
+urllib3==2.6.0
 wcwidth==0.2.6
 webcolors==1.13
 webencodings==0.5.1
