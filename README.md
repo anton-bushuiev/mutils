@@ -1,3 +1,5 @@
+
+
 # Mutation utilities for protein design
 
 A very raw version, work in progress. To install, run `pip install git+https://github.com/anton-bushuiev/mutils.git`.
@@ -17,7 +19,7 @@ mutation.revert()
 > Mutation(muts=[PointMutation(wt='A', chain='C', pos=13, ins=None, m='T'), PointMutation(wt='A', chain='C', pos=13, ins='a', m='G')])
 
 # Revert and convert back to string
-str(mut.revert())
+str(mutation.revert())
 > 'AC13T,AC13aG'
 
 # Check if the wild type is present in a PDB file
